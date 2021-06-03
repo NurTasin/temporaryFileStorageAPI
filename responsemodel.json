@@ -1,19 +1,51 @@
-
 //Read a file
 {
     "x-api-key":"APIKEY000001",
-    "io":{
-        "type":"read",
-        "path":"test.json"
-    }
+    "path":"test.json"
 }
-
+//>> response
+{
+    "success":true,
+    "data":"Hello World!!"
+}
 //write a file
 {
     "x-api-key":"APIKEY000001",
-    "io":{
-        "type":"write",
-        "path":"test.json",
-        "content":"{\"name\":\"Tasin\"}"
-    }
+    "path":"test.json",
+    "content":"Hello World"
+}
+//>> response
+{
+    "success":true,
+    "created":false
+}
+//append to a file
+{
+    "x-api-key":"APIKEY000001",
+    "path":"test.json",
+    "content":"\nTor Buzz Foo"
+}
+//>> response
+{
+    "success":true,
+    "created":false
+}
+//Read that file on which append operation was applied
+{
+    "x-api-key":"APIKEY000001",
+    "path":"test.json"
+}
+//>> response
+{
+    "success":true,
+    "data":"Hello World!!\nTor Buzz Foo"
+}
+//Delete file
+{
+    "x-api-key":"APIKEY000001",
+    "path":"test.json"
+}
+//>> response
+{
+    "success":true
 }
