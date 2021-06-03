@@ -1,0 +1,19 @@
+
+//Read a file
+{
+    "x-api-key":"APIKEY000001",
+    "io":{
+        "type":"read",
+        "path":"test.json"
+    }
+}
+
+//write a file
+{
+    "x-api-key":"APIKEY000001",
+    "io":{
+        "type":"write",
+        "path":"test.json",
+        "content":"{\"name\":\"Tasin\"}"
+    }
+}
