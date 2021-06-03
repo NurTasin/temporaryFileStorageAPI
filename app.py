@@ -163,5 +163,42 @@ def RequestAppendFile():
             "msg":"Authentication Failed. API Key not matched."
         })
 
+@app.route("/api/v1/remove")
+def RequestRemoveFile():
+    try:
+        apiKey=request.json["x-api-key"]
+    except KeyError:
+        return jsonify({
+            "success":False,
+            "msg":"Authentication Failed. API Key not provided."
+        })
+    except TypeError:
+        return jsonify({
+            "success":False,
+            "msg":"value for x-api-key field not provided."
+        })
+    
+    try:
+        addr=request.json["path"]
+    except KeyError:
+        return jsonify({
+            "success":False,
+            "msg":"value for path field not provided."
+        })
+    
+    if ".." in addr:
+        return jsonify({
+            "success":False,
+            "msg":"for security perposes, we don't allow using '..' path"
+        })
+    
+    if users.authenticate(apiKey)!=False:
+        return io.delete(users.authenticate(apiKey),addr)
+    else:
+        return jsonify({
+            "success":False,
+            "msg":"Authentication Failed. API Key not matched."
+        })
+
 if __name__=="__main__":
     app.run(port=8080,debug=True)

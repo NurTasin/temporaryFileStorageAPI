@@ -33,6 +33,7 @@ def append(username,filename,content):
             "created":False
         })
     else:
+        mkdir(path.split(actualPath)[0])
         with open(actualPath,'a+') as f:
             f.write(content)
         return jsonify({
