@@ -1,4 +1,4 @@
-from os import path,remove
+from os import path,remove,mkdir
 from flask import jsonify
 
 def write(username,filename,content):
@@ -13,6 +13,7 @@ def write(username,filename,content):
             "created":False
         })
     else:
+        mkdir(path.split(actualPath)[0])
         with open(actualPath,'w+') as f:
             f.write(content)
         return jsonify({
